@@ -50,17 +50,19 @@ def update_app():
 
     extracted_path = os.path.join(TEMP_DIR, "home-garden-main")
 
+    os.makedirs(REPO_PATH, exist_ok=True)
+
     subprocess.run(["sudo", "systemctl", "stop", SERVICE_NAME], check=True)
 
-    for item in os.listdir(extracted_path):
-        src = os.path.join(extracted_path, item)
-        dst = os.path.join(REPO_PATH, item)
+    for root, dirs, files in os.walk(extracted_path):
+        rel_path = os.path.relpath(root, extracted_path)
+        dest_path = os.path.join(REPO_PATH, rel_path)
+        os.makedirs(dest_path, exist_ok=True)
 
-        if os.path.isdir(src):
-            if os.path.exists(dst):
-                shutil.rmtree(dst)
-            shutil.copytree(src, dst)
-        else:
+        for file in files:
+            src = os.path.join(root, file)
+            dst = os.path.join(dest_path, file)
+            os.makedirs(os.path.dirname(dst), exist_ok=True)
             shutil.copy2(src, dst)
 
     subprocess.run(["sudo", "systemctl", "start", SERVICE_NAME], check=True)
