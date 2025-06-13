@@ -139,6 +139,8 @@ HTML = """
 </body>
 </html>
 """
+
+
 def get_version():
     try:
         version_path = os.path.join(os.path.dirname(__file__), "..", "version.txt")
@@ -146,6 +148,7 @@ def get_version():
             return f.read().strip()
     except Exception:
         return "Unknown"
+
 
 def get_system_status():
     # CPU temperature
@@ -176,6 +179,7 @@ def get_system_status():
 
     return temperatura, uptime, cpu_load, ram_usage, disk_space
 
+
 def render_with_status(message):
     temperatura, uptime, cpu_load, ram_usage, disk_space = get_system_status()
     return render_template_string(
@@ -187,8 +191,9 @@ def render_with_status(message):
         disk_space=disk_space,
         message=message,
         year=datetime.datetime.now().year,
-        version=get_version()
+        version=get_version(),
     )
+
 
 @app.route("/")
 def index():
@@ -202,25 +207,18 @@ def index():
         disk_space=disk_space,
         message=None,
         year=datetime.datetime.now().year,
-        version=get_version()
-
+        version=get_version(),
     )
+
 
 @app.route("/update", methods=["POST"])
 def update():
     try:
-        subprocess.run(["sudo", "systemctl", "stop", "moj_program.service"], check=True)
-        result = subprocess.run(
-            ["git", "-C", "/home/wiewior/twoj_program", "pull"],
-            check=True,
-            text=True,
-            capture_output=True,
-        )
-        subprocess.run(["sudo", "systemctl", "start", "moj_program.service"], check=True)
-        msg = "✅ Aktualizacja zakończona.\n\n" + result.stdout
+        subprocess.run(["sudo", "systemctl", "start", "updater.service"], check=True)
+        return render_with_status("🔄 Aktualizacja została uruchomiona.")
     except subprocess.CalledProcessError as e:
-        msg = f"❌ Błąd:\n{e}\n\n{e.stderr if hasattr(e, 'stderr') else ''}"
-    return render_with_status(msg)
+        return render_with_status(f"❌ Błąd aktualizacji:\n{e}")
+
 
 @app.route("/restart_program", methods=["POST"])
 def restart_program():
@@ -230,6 +228,7 @@ def restart_program():
     except subprocess.CalledProcessError as e:
         msg = f"❌ Błąd restartu programu:\n{e}"
     return render_with_status(msg)
+
 
 @app.route("/restart_www", methods=["POST"])
 def restart_www():
@@ -255,19 +254,18 @@ def restart_www():
     except Exception as e:
         return render_with_status(f"❌ Błąd restartu WWW:\n{e}")
 
+
 @app.route("/update_system", methods=["POST"])
 def update_system():
     try:
         result = subprocess.run(
-            ["sudo", "apt", "update"],
-            check=True,
-            capture_output=True,
-            text=True
+            ["sudo", "apt", "update"], check=True, capture_output=True, text=True
         )
         msg = "✅ `apt update` zakończone:\n\n" + result.stdout
     except subprocess.CalledProcessError as e:
         msg = f"❌ Błąd podczas `apt update`:\n{e.stderr if e.stderr else str(e)}"
     return render_with_status(msg)
+
 
 @app.route("/upgrade_system", methods=["POST"])
 def upgrade_system():
@@ -276,12 +274,13 @@ def upgrade_system():
             ["sudo", "apt", "full-upgrade", "-y"],
             check=True,
             capture_output=True,
-            text=True
+            text=True,
         )
         msg = "✅ `apt upgrade` zakończone:\n\n" + result.stdout
     except subprocess.CalledProcessError as e:
         msg = f"❌ Błąd podczas `apt upgrade`:\n{e.stderr if e.stderr else str(e)}"
     return render_with_status(msg)
+
 
 @app.route("/reboot", methods=["POST"])
 def reboot():
@@ -291,6 +290,7 @@ def reboot():
     except Exception as e:
         msg = f"❌ Błąd restartu Raspberry Pi:\n{e}"
     return render_with_status(msg)
+
 
 if __name__ == "__main__":
     app.run(debug=False, host="0.0.0.0", port=5000)
