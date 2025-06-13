@@ -1,7 +1,5 @@
 # home-garden
-<Description>
-Description
-<Installation>
+# Description
 Installation
 <License>
 License
