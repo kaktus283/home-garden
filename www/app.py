@@ -1,0 +1,296 @@
+from flask import Flask, render_template_string, request
+import subprocess
+import os
+import datetime
+
+app = Flask(__name__)
+
+HTML = """
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel zarządzania Raspberry Pi</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6f8;
+      padding: 2rem;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #2c3e50;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .card {
+      flex: 1 1 200px;
+      background: #f1f1f1;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    form {
+      display: inline-block;
+      margin: 0.5rem;
+    }
+    .button-row {
+      text-align: center;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      min-width: 220px;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .status-box {
+      background-color: #fefefe;
+      padding: 1rem;
+      border-left: 4px solid #3498db;
+      margin-top: 1.5rem;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><a href="/" style="text-decoration: none; color: inherit;">Raspberry Pi – Panel zarządzania</a></h1>
+    </br>
+    <section>
+      <h2>📊 Status systemu</h2>
+      <div class="grid">
+        <div class="card">🌡️ <b>Temp CPU</b><br>{{ temperatura }}°C</div>
+        <div class="card">⏱️ <b>Uptime</b><br>{{ uptime }}</div>
+        <div class="card">📈 <b>CPU</b><br>{{ cpu_load }}</div>
+        <div class="card">💾 <b>RAM</b><br>{{ ram_usage }}</div>
+        <div class="card">🗂️ <b>HDD</b><br>{{ disk_space }}</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>🧩 Usługi</h2>
+      <div class="button-row">
+        <form method="POST" action="/restart_program"><button>🔄 <b>Restartuj program</b></button></form>
+        <form method="POST" action="/restart_www"><button>🌐 <b>Restartuj WWW</b></button></form>
+      </div>
+    </section>
+
+    <section>
+      <h2>🔧 Aktualizacje</h2>
+      <div class="button-row">
+        <form method="POST" action="/update"><button>🔁 <b>Aktualizuj i restartuj program</b></button></form><br><br>
+        <form method="POST" action="/update_system"><button>⬇️<br><br><b>Aktualizuj system</b><br>(apt update)</button></form>
+        <form method="POST" action="/upgrade_system"><button>📦<br><br><b>Uaktualnij pakiety</b><br>(apt full-upgrade)</button></form>
+      </div>
+    </section>
+
+    <section>
+      <h2>💻 Sprzęt</h2>
+      <div class="button-row">
+        <form method="POST" action="/reboot"><button>⚡ <b>Restart Raspberry Pi</b></button></form>
+      </div>
+    </section>
+
+    {% if message %}
+      <div class="status-box">
+        <strong>Status:</strong><br>
+        {{ message }}
+      </div>
+    {% endif %}
+
+    <footer>
+      Bartłomiej Wiórkiewicz<br>Wersja {{ version }}<br>© {{ year }} 
+    </footer>
+  </div>
+</body>
+</html>
+"""
+def get_version():
+    try:
+        version_path = os.path.join(os.path.dirname(__file__), "..", "version.txt")
+        with open(version_path, "r") as f:
+            return f.read().strip()
+    except Exception:
+        return "Unknown"
+
+def get_system_status():
+    # CPU temperature
+    try:
+        temp = subprocess.check_output(["vcgencmd", "measure_temp"]).decode()
+        temperatura = temp.replace("temp=", "").replace("'C\n", "")
+    except:
+        temperatura = "N/A"
+
+    # Uptime
+    uptime_raw = subprocess.getoutput("uptime -p")
+    uptime = uptime_raw.removeprefix("up ").strip()
+
+    # CPU load
+    with open("/proc/loadavg", "r") as f:
+        cpu_load = f.read().split()[0]
+
+    # RAM usage
+    meminfo = subprocess.getoutput("free -m").splitlines()
+    mem_parts = meminfo[1].split()
+    used = int(mem_parts[2])
+    total = int(mem_parts[1])
+    ram_usage = f"{used} / {total} MB"
+
+    # Disk usage
+    disk_info = subprocess.getoutput("df -h /").splitlines()[1].split()
+    disk_space = f"{disk_info[2]} użyto z {disk_info[1]}"
+
+    return temperatura, uptime, cpu_load, ram_usage, disk_space
+
+def render_with_status(message):
+    temperatura, uptime, cpu_load, ram_usage, disk_space = get_system_status()
+    return render_template_string(
+        HTML,
+        temperatura=temperatura,
+        uptime=uptime,
+        cpu_load=cpu_load,
+        ram_usage=ram_usage,
+        disk_space=disk_space,
+        message=message,
+        year=datetime.datetime.now().year,
+        version=get_version()
+    )
+
+@app.route("/")
+def index():
+    temperatura, uptime, cpu_load, ram_usage, disk_space = get_system_status()
+    return render_template_string(
+        HTML,
+        temperatura=temperatura,
+        uptime=uptime,
+        cpu_load=cpu_load,
+        ram_usage=ram_usage,
+        disk_space=disk_space,
+        message=None,
+        year=datetime.datetime.now().year,
+        version=get_version()
+
+    )
+
+@app.route("/update", methods=["POST"])
+def update():
+    try:
+        subprocess.run(["sudo", "systemctl", "stop", "moj_program.service"], check=True)
+        result = subprocess.run(
+            ["git", "-C", "/home/wiewior/twoj_program", "pull"],
+            check=True,
+            text=True,
+            capture_output=True,
+        )
+        subprocess.run(["sudo", "systemctl", "start", "moj_program.service"], check=True)
+        msg = "✅ Aktualizacja zakończona.\n\n" + result.stdout
+    except subprocess.CalledProcessError as e:
+        msg = f"❌ Błąd:\n{e}\n\n{e.stderr if hasattr(e, 'stderr') else ''}"
+    return render_with_status(msg)
+
+@app.route("/restart_program", methods=["POST"])
+def restart_program():
+    try:
+        subprocess.run(["sudo", "systemctl", "restart", "init_app.service"], check=True)
+        msg = "🔄 Program został zrestartowany."
+    except subprocess.CalledProcessError as e:
+        msg = f"❌ Błąd restartu programu:\n{e}"
+    return render_with_status(msg)
+
+@app.route("/restart_www", methods=["POST"])
+def restart_www():
+    try:
+        subprocess.Popen(["sudo", "systemctl", "restart", "webapp.service"])
+        return """
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta http-equiv="refresh" content="2; URL=/" />
+            <title>Restartowanie...</title>
+            <style>
+                body { font-family: sans-serif; text-align: center; margin-top: 5em; }
+            </style>
+        </head>
+        <body>
+            <h1>🌐 Restartowanie serwera WWW...</h1>
+            <p>Strona automatycznie odświeży się za kilka sekund.</p>
+            <p>Jeśli to nie nastąpi, <a href="/">kliknij tutaj</a>.</p>
+        </body>
+        </html>
+        """
+    except Exception as e:
+        return render_with_status(f"❌ Błąd restartu WWW:\n{e}")
+
+@app.route("/update_system", methods=["POST"])
+def update_system():
+    try:
+        result = subprocess.run(
+            ["sudo", "apt", "update"],
+            check=True,
+            capture_output=True,
+            text=True
+        )
+        msg = "✅ `apt update` zakończone:\n\n" + result.stdout
+    except subprocess.CalledProcessError as e:
+        msg = f"❌ Błąd podczas `apt update`:\n{e.stderr if e.stderr else str(e)}"
+    return render_with_status(msg)
+
+@app.route("/upgrade_system", methods=["POST"])
+def upgrade_system():
+    try:
+        result = subprocess.run(
+            ["sudo", "apt", "full-upgrade", "-y"],
+            check=True,
+            capture_output=True,
+            text=True
+        )
+        msg = "✅ `apt upgrade` zakończone:\n\n" + result.stdout
+    except subprocess.CalledProcessError as e:
+        msg = f"❌ Błąd podczas `apt upgrade`:\n{e.stderr if e.stderr else str(e)}"
+    return render_with_status(msg)
+
+@app.route("/reboot", methods=["POST"])
+def reboot():
+    try:
+        subprocess.Popen(["sudo", "reboot"])
+        msg = "⚡ Raspberry Pi restartuje się..."
+    except Exception as e:
+        msg = f"❌ Błąd restartu Raspberry Pi:\n{e}"
+    return render_with_status(msg)
+
+if __name__ == "__main__":
+    app.run(debug=False, host="0.0.0.0", port=5000)
