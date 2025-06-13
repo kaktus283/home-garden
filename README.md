@@ -1,6 +1,39 @@
 # 🌱 Home-Garden
-Home-Garden to inteligentny asystent do domowej uprawy roślin. Monitoruje wilgotność gleby i automatycznie podlewa rośliny, gdy tego potrzebują. Dzięki niemu Twoje rośliny będą zawsze zadbane, nawet gdy zapomnisz o podlewaniu. Idealne rozwiązanie dla miłośników zieleni, zapracowanych ogrodników i fanów elektroniki DIY.
-# Installation
-# Update
-# License
-# Contribution
+
+**Home-Garden** to inteligentny asystent do domowej uprawy roślin. Monitoruje wilgotność gleby, kontroluje oświetlenie i automatycznie podlewa rośliny, gdy tego potrzebują. Dzięki niemu Twoje rośliny będą zawsze zadbane, nawet gdy zapomnisz o podlewaniu. Idealne rozwiązanie dla miłośników zieleni, zapracowanych ogrodników i fanów elektroniki DIY.
+
+Projekt opiera się m.in. na rozwiązaniu [**Logdash.io**](https://logdash.io), które świetnie sprawdza się w zastosowaniach IoT – umożliwia przechowywanie i wygodny podgląd danych z czujników w czasie rzeczywistym.
+
+---
+
+## 🔧 Instalacja
+
+Proces instalacji jest obecnie dość złożony i wymaga ręcznej konfiguracji kilku komponentów (Raspberry Pi, Arduino, czujniki, Logdash, itp.).  
+Pracuję nad uproszczeniem całego procesu i udostępnieniem gotowego przewodnika krok po kroku.
+
+**W planach:**
+- Instrukcja instalacji krok po kroku  
+- Gotowe obrazy firmware 
+- Automatyczna konfiguracja po stronie serwera
+
+---
+
+## 🔄 Aktualizacje
+
+Aktualizacja systemu w obecnym stanie może być jeszcze bardziej wymagająca niż sama instalacja – dotyczy to zarówno firmware'u urządzeń, jak i konfiguracji backendu.  
+Docelowo planuję wdrożyć uproszczony mechanizm aktualizacji OTA (Over-the-Air) oraz automatyczne sprawdzanie wersji.
+
+---
+
+## 📄 Licencja
+
+(Licencja zostanie określona w przyszłości.)
+
+---
+
+## 🤝 Współpraca
+
+Chcesz pomóc rozwinąć projekt? Super!  
+Planuję stworzyć roadmapę i otworzyć zgłoszenia (issues), które będzie można współdzielić i rozwijać. Pull requesty mile widziane.
+
+**Sugestie, poprawki i opinie są bardzo cenne – śmiało pisz!**
