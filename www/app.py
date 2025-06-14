@@ -93,6 +93,18 @@ HTML = """
     <section>
       <h2>📊 Status systemu</h2>
       <div class="grid">
+        <div class="card" style="background-color: {% if init_app_status == 'active' %}#d4edda{% else %}#f8d7da{% endif %};">
+          🧩 <b>init_app.service</b><br>
+          {% if init_app_status == 'active' %}
+            ✅ Aktywna
+          {% elif init_app_status == 'inactive' %}
+            ⚠️ Nieaktywna
+          {% elif init_app_status == 'failed' %}
+            ❌ Błąd
+          {% else %}
+            ❓ Nieznany status
+          {% endif %}
+        </div>
         <div class="card">🌡️ <b>Temp CPU</b><br>{{ temperatura }}°C</div>
         <div class="card">⏱️ <b>Uptime</b><br>{{ uptime }}</div>
         <div class="card">📈 <b>CPU</b><br>{{ cpu_load }}</div>
@@ -150,6 +162,21 @@ def get_version():
         return "Unknown"
 
 
+def get_service_status(service_name):
+    try:
+
+        output = (
+            subprocess.check_output(["systemctl", "is-active", service_name])
+            .decode()
+            .strip()
+        )
+
+        return output
+
+    except:
+        return "unknown"
+
+
 def get_system_status():
     # CPU temperature
     try:
@@ -177,11 +204,16 @@ def get_system_status():
     disk_info = subprocess.getoutput("df -h /").splitlines()[1].split()
     disk_space = f"{disk_info[2]} użyto z {disk_info[1]}"
 
-    return temperatura, uptime, cpu_load, ram_usage, disk_space
+    # Service status
+    init_app_status = get_service_status("init_app.service")
+
+    return temperatura, uptime, cpu_load, ram_usage, disk_space, init_app_status
 
 
 def render_with_status(message):
-    temperatura, uptime, cpu_load, ram_usage, disk_space = get_system_status()
+    temperatura, uptime, cpu_load, ram_usage, disk_space, init_app_status = (
+        get_system_status()
+    )
     return render_template_string(
         HTML,
         temperatura=temperatura,
@@ -189,6 +221,7 @@ def render_with_status(message):
         cpu_load=cpu_load,
         ram_usage=ram_usage,
         disk_space=disk_space,
+        init_app_status=init_app_status,
         message=message,
         year=datetime.datetime.now().year,
         version=get_version(),
@@ -205,6 +238,7 @@ def index():
         cpu_load=cpu_load,
         ram_usage=ram_usage,
         disk_space=disk_space,
+        init_app_status=init_app_status,
         message=None,
         year=datetime.datetime.now().year,
         version=get_version(),
