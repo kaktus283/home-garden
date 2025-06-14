@@ -230,7 +230,9 @@ def render_with_status(message):
 
 @app.route("/")
 def index():
-    temperatura, uptime, cpu_load, ram_usage, disk_space = get_system_status()
+    temperatura, uptime, cpu_load, ram_usage, disk_space, init_app_status = (
+        get_system_status()
+    )
     return render_template_string(
         HTML,
         temperatura=temperatura,
