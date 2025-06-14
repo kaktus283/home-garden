@@ -94,7 +94,7 @@ HTML = """
       <h2>📊 Status systemu</h2>
       <div class="grid">
         <div class="card" id="init-app-card">
-            🧩 <b>init_app.service</b><br>
+            🧩 <b>Usługi</b><br>
             <span id="init-app-status">
               {% if init_app_status == 'active' %}
                 ✅ Aktywna
