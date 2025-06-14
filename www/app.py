@@ -215,7 +215,23 @@ def index():
 def update():
     try:
         subprocess.run(["sudo", "systemctl", "start", "updater.service"], check=True)
-        return render_with_status("🔄 Aktualizacja została uruchomiona.")
+        return """
+      <!DOCTYPE html>
+      <html>
+      <head>
+          <meta http-equiv="refresh" content="10; URL=/" />
+          <title>Restartowanie...</title>
+          <style>
+              body { font-family: sans-serif; text-align: center; margin-top: 5em; }
+          </style>
+      </head>
+      <body>
+          <h1>🔄 Aktualizacja została uruchomiona....</h1>
+          <p>Strona automatycznie odświeży się za kilka sekund.</p>
+          <p>Jeśli to nie nastąpi, <a href="/">kliknij tutaj</a>.</p>
+      </body>
+      </html>
+      """
     except subprocess.CalledProcessError as e:
         return render_with_status(f"❌ Błąd aktualizacji:\n{e}")
 
