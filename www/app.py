@@ -294,14 +294,14 @@ def update():
       <!DOCTYPE html>
       <html>
       <head>
-          <meta http-equiv="refresh" content="10; URL=/" />
+          <meta http-equiv="refresh" content="5; URL=/" />
           <title>Restartowanie...</title>
           <style>
               body { font-family: sans-serif; text-align: center; margin-top: 5em; }
           </style>
       </head>
       <body>
-          <h1>🔄 Aktualizacja została uruchomiona....</h1>
+          <h1>🔄 Aktualizacja w trakcie....</h1>
           <p>Strona automatycznie odświeży się za kilka sekund.</p>
           <p>Jeśli to nie nastąpi, <a href="/">kliknij tutaj</a>.</p>
       </body>
