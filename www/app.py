@@ -93,18 +93,20 @@ HTML = """
     <section>
       <h2>📊 Status systemu</h2>
       <div class="grid">
-        <div class="card" style="background-color: {% if init_app_status == 'active' %}#d4edda{% else %}#f8d7da{% endif %};">
-          🧩 <b>init_app.service</b><br>
-          {% if init_app_status == 'active' %}
-            ✅ Aktywna
-          {% elif init_app_status == 'inactive' %}
-            ⚠️ Nieaktywna
-          {% elif init_app_status == 'failed' %}
-            ❌ Błąd
-          {% else %}
-            ❓ Nieznany status
-          {% endif %}
-        </div>
+        <div class="card" id="init-app-card">
+            🧩 <b>init_app.service</b><br>
+            <span id="init-app-status">
+              {% if init_app_status == 'active' %}
+                ✅ Aktywna
+              {% elif init_app_status == 'inactive' %}
+                ⚠️ Nieaktywna
+              {% elif init_app_status == 'failed' %}
+                ❌ Błąd
+              {% else %}
+                ❓ Nieznany status
+              {% endif %}
+            </span>
+          </div>
           <div class="card">🌡️ <b>Temp CPU</b><br><span id="temp-box">{{ temperatura }}°C</span></div>
           <div class="card">⏱️ <b>Uptime</b><br><span id="uptime-box">{{ uptime }}</span></div>
           <div class="card">📈 <b>CPU</b><br><span id="cpu-box">{{ cpu_load }}</span></div>
@@ -149,6 +151,25 @@ HTML = """
     </footer>
   </div>
   <script>
+    function updateInitAppStatus(status) {
+      const card = document.getElementById('init-app-card');
+      const label = document.getElementById('init-app-status');
+
+      if (status === 'active') {
+        card.style.backgroundColor = '#d4edda';
+        label.innerText = '✅ Aktywna';
+      } else if (status === 'inactive') {
+        card.style.backgroundColor = '#f8d7da';
+        label.innerText = '⚠️ Nieaktywna';
+      } else if (status === 'failed') {
+        card.style.backgroundColor = '#f8d7da';
+        label.innerText = '❌ Błąd';
+      } else {
+        card.style.backgroundColor = '#f8d7da';
+        label.innerText = '❓ Nieznany status';
+      }
+    }
+
     async function fetchStatus() {
       try {
         const res = await fetch('/status');
@@ -158,11 +179,13 @@ HTML = """
         document.getElementById('cpu-box').innerText = data.cpu_load;
         document.getElementById('ram-box').innerText = data.ram_usage;
         document.getElementById('disk-box').innerText = data.disk_space;
+        updateInitAppStatus(data.init_app_status);
       } catch (e) {
         console.error("Błąd pobierania statusu:", e);
       }
     }
-    setInterval(fetchStatus, 1000);
+
+    setInterval(fetchStatus, 5000);
   </script>
 </body>
 </html>
