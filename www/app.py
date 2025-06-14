@@ -105,11 +105,11 @@ HTML = """
             ❓ Nieznany status
           {% endif %}
         </div>
-        <div class="card">🌡️ <b>Temp CPU</b><br>{{ temperatura }}°C</div>
-        <div class="card">⏱️ <b>Uptime</b><br>{{ uptime }}</div>
-        <div class="card">📈 <b>CPU</b><br>{{ cpu_load }}</div>
-        <div class="card">💾 <b>RAM</b><br>{{ ram_usage }}</div>
-        <div class="card">🗂️ <b>HDD</b><br>{{ disk_space }}</div>
+          <div class="card">🌡️ <b>Temp CPU</b><br><span id="temp-box">{{ temperatura }}°C</span></div>
+          <div class="card">⏱️ <b>Uptime</b><br><span id="uptime-box">{{ uptime }}</span></div>
+          <div class="card">📈 <b>CPU</b><br><span id="cpu-box">{{ cpu_load }}</span></div>
+          <div class="card">💾 <b>RAM</b><br><span id="ram-box">{{ ram_usage }}</span></div>
+          <div class="card">🗂️ <b>HDD</b><br><span id="disk-box">{{ disk_space }}</span></div>
       </div>
     </section>
 
@@ -148,6 +148,22 @@ HTML = """
       Bartłomiej Wiórkiewicz<br>Wersja {{ version }}<br>© {{ year }} 
     </footer>
   </div>
+  <script>
+    async function fetchStatus() {
+      try {
+        const res = await fetch('/status');
+        const data = await res.json();
+        document.getElementById('temp-box').innerText = data.temperatura + '°C';
+        document.getElementById('uptime-box').innerText = data.uptime;
+        document.getElementById('cpu-box').innerText = data.cpu_load;
+        document.getElementById('ram-box').innerText = data.ram_usage;
+        document.getElementById('disk-box').innerText = data.disk_space;
+      } catch (e) {
+        console.error("Błąd pobierania statusu:", e);
+      }
+    }
+    setInterval(fetchStatus, 1000);
+  </script>
 </body>
 </html>
 """
@@ -342,6 +358,21 @@ def reboot():
     except Exception as e:
         msg = f"❌ Błąd restartu Raspberry Pi:\n{e}"
     return render_with_status(msg)
+
+
+@app.route("/status")
+def status():
+    temperatura, uptime, cpu_load, ram_usage, disk_space, init_app_status = (
+        get_system_status()
+    )
+    return {
+        "temperatura": temperatura,
+        "uptime": uptime,
+        "cpu_load": cpu_load,
+        "ram_usage": ram_usage,
+        "disk_space": disk_space,
+        "init_app_status": init_app_status,
+    }
 
 
 if __name__ == "__main__":
