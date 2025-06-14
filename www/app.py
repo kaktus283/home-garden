@@ -97,13 +97,13 @@ HTML = """
             🧩 <b>Usługi</b><br>
             <span id="init-app-status">
               {% if init_app_status == 'active' %}
-                ✅ Aktywna
+                Aktywne
               {% elif init_app_status == 'inactive' %}
-                ⚠️ Nieaktywna
+                Nieaktywne
               {% elif init_app_status == 'failed' %}
-                ❌ Błąd
+                Błąd
               {% else %}
-                ❓ Nieznany status
+                Nieznany status
               {% endif %}
             </span>
           </div>
@@ -157,16 +157,16 @@ HTML = """
 
       if (status === 'active') {
         card.style.backgroundColor = '#d4edda';
-        label.innerText = '✅ Aktywna';
+        label.innerText = 'Aktywne';
       } else if (status === 'inactive') {
         card.style.backgroundColor = '#f8d7da';
-        label.innerText = '⚠️ Nieaktywna';
+        label.innerText = 'Nieaktywne';
       } else if (status === 'failed') {
         card.style.backgroundColor = '#f8d7da';
-        label.innerText = '❌ Błąd';
+        label.innerText = 'Błąd';
       } else {
         card.style.backgroundColor = '#f8d7da';
-        label.innerText = '❓ Nieznany status';
+        label.innerText = 'Nieznany status';
       }
     }
 
