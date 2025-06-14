@@ -248,7 +248,7 @@ def index():
 @app.route("/update", methods=["POST"])
 def update():
     try:
-        subprocess.run(["sudo", "systemctl", "start", "updater.service"], check=True)
+        subprocess.Popen(["sudo", "systemctl", "start", "updater.service"])
         return """
       <!DOCTYPE html>
       <html>
