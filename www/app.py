@@ -292,9 +292,9 @@ def upgrade_system():
             capture_output=True,
             text=True,
         )
-        msg = "✅ `apt upgrade` zakończone:\n\n" + result.stdout
+        msg = "✅ `apt full-upgrade` zakończone:\n\n" + result.stdout
     except subprocess.CalledProcessError as e:
-        msg = f"❌ Błąd podczas `apt upgrade`:\n{e.stderr if e.stderr else str(e)}"
+        msg = f"❌ Błąd podczas `apt full-upgrade`:\n{e.stderr if e.stderr else str(e)}"
     return render_with_status(msg)
 
 
