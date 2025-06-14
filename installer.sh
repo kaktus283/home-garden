@@ -75,6 +75,11 @@ if [ -f "$TEMP_DIR/home-garden-main/version.txt" ]; then
   cp "$TEMP_DIR/home-garden-main/version.txt" "$REPO_PATH/"
 fi
 
+# Replace requirements.txt
+if [ -f "$TEMP_DIR/home-garden-main/requirements.txt" ]; then
+  cp "$TEMP_DIR/home-garden-main/requirements.txt" "$REPO_PATH/"
+fi
+
 # Set privillages
 sudo chown -R wiewior:wiewior "$REPO_PATH"
 
