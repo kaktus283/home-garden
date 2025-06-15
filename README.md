@@ -18,10 +18,18 @@ Pracuję nad uproszczeniem całego procesu i udostępnieniem gotowego przewodnik
 
 ---
 
-## 🔄 Aktualizacje
+## 🔄 Aktualizacje OTA (Over-the-Air)
 
-Aktualizacja systemu w obecnym stanie może być jeszcze bardziej wymagająca niż sama instalacja – dotyczy to zarówno firmware'u urządzeń, jak i konfiguracji backendu.  
-Docelowo planuję wdrożyć uproszczony mechanizm aktualizacji OTA (Over-the-Air) oraz automatyczne sprawdzanie wersji.
+Aktualizacja systemu w obecnym stanie może być jeszcze bardziej wymagająca niż sama instalacja – dotyczy to zarówno firmware'u urządzeń, jak i konfiguracji backendu.
+
+~~Docelowo planuję wdrożyć uproszczony mechanizm aktualizacji OTA (Over-the-Air) oraz automatyczne sprawdzanie wersji.~~
+
+Od wersji 1.0.1000 aktualizację OTA można wykonać za pomocą specjalnego modułu w Panelu zarządzania RaspberryPi.  
+Moduł automatycznie sprawdza dostępność nowszej wersji i – w razie potrzeby – pobiera ją.
+
+<p align="center">
+  <img width="330" alt="image" src="https://github.com/user-attachments/assets/2090201f-59f0-470a-a3b5-7fa5468a88a3" />
+</p>
 
 ---
 
