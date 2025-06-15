@@ -88,8 +88,9 @@ HTML = """
 </head>
 <body>
   <div class="container">
-    <h1><a href="/" style="text-decoration: none; color: inherit;">Raspberry Pi – Panel zarządzania</a></h1>
-    </br>
+    <div class="logo-wrapper">
+      <img src="/static/logo.png" alt="Raspberry Pi - Control Panel Logo" class="logo-image">
+    </div>
     <section>
       <h2>📊 Status systemu</h2>
       <div class="grid">
