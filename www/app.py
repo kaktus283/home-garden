@@ -93,8 +93,8 @@ HTML = """
     }
 
     .logo-image {
-        max-width: 100%;
-        height: 80%;
+        max-width: 80%;
+        height: auto;
         border-radius: 15px;
         display: block;
     }
