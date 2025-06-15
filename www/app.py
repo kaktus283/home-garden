@@ -98,12 +98,19 @@ HTML = """
         border-radius: 15px;
         display: block;
     }
+
+    .logo-link {
+    display: block; /* Sprawia, że link obejmuje cały obraz */
+    text-decoration: none; /* Usuwa podkreślenie, które domyślnie dodaje link */
+  }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="logo-wrapper">
-      <img src="/static/logo.png" alt="Raspberry Pi - Control Panel Logo" class="logo-image">
+      <a href="/" class="logo-link">
+        <img src="/static/logo.png" alt="Raspberry Pi - Control Panel Logo" class="logo-image">
+      </a>
     </div>
     <section>
       <h2>📊 Status systemu</h2>
