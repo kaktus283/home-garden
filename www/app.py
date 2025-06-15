@@ -100,8 +100,8 @@ HTML = """
     }
 
     .logo-link {
-    display: block; /* Sprawia, że link obejmuje cały obraz */
-    text-decoration: none; /* Usuwa podkreślenie, które domyślnie dodaje link */
+    display: block;
+    text-decoration: none;
   }
   </style>
 </head>
@@ -109,7 +109,7 @@ HTML = """
   <div class="container">
     <div class="logo-wrapper">
       <a href="/" class="logo-link">
-        <img src="/static/logo.png" alt="Raspberry Pi - Control Panel Logo" class="logo-image">
+        <img src="/static/images/logo.png" alt="Raspberry Pi - Control Panel Logo" class="logo-image">
       </a>
     </div>
     <section>
@@ -207,7 +207,7 @@ HTML = """
       }
     }
 
-    setInterval(fetchStatus, 5000);
+    setInterval(fetchStatus, 2000);
   </script>
 </body>
 </html>

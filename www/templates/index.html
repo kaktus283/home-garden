@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel zarządzania Raspberry Pi</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6f8;
+      padding: 2rem;
+      color: #3d3d3d;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+    h1, h2 {
+      text-align: left;
+      margin-bottom: 1rem;
+      color: #2c3e50;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .card {
+      flex: 1 1 200px;
+      background: #f1f1f1;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    form {
+      display: inline-block;
+      margin: 0.5rem;
+    }
+    .button-row {
+      text-align: center;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      min-width: 220px;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .status-box {
+      background-color: #fefefe;
+      padding: 1rem;
+      border-left: 4px solid #3498db;
+      margin-top: 1.5rem;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    .logo-wrapper {
+        background-color: #3d3d3d;
+        padding: 10px;
+        border-radius: 15px;
+        display: inline-block;
+    }
+
+    .logo-image {
+        max-width: 80%;
+        height: auto;
+        border-radius: 15px;
+        display: block;
+    }
+
+    .logo-link {
+    display: block;
+    text-decoration: none;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo-wrapper">
+      <a href="/" class="logo-link">
+        <img src="/static/images/logo.png" alt="Raspberry Pi - Control Panel Logo" class="logo-image">
+      </a>
+    </div>
+    <section>
+      <h2>📊 Status systemu</h2>
+      <div class="grid">
+        <div class="card" id="init-app-card">
+            🧩 <b>Usługi</b><br>
+            <span id="init-app-status">
+              {% if init_app_status == 'active' %}
+                Aktywne
+              {% elif init_app_status == 'inactive' %}
+                Nieaktywne
+              {% elif init_app_status == 'failed' %}
+                Błąd
+              {% else %}
+                Nieznany status
+              {% endif %}
+            </span>
+          </div>
+          <div class="card">🌡️ <b>Temp CPU</b><br><span id="temp-box">{{ temperatura }}°C</span></div>
+          <div class="card">⏱️ <b>Uptime</b><br><span id="uptime-box">{{ uptime }}</span></div>
+          <div class="card">📈 <b>CPU</b><br><span id="cpu-box">{{ cpu_load }}</span></div>
+          <div class="card">💾 <b>RAM</b><br><span id="ram-box">{{ ram_usage }}</span></div>
+          <div class="card">🗂️ <b>HDD</b><br><span id="disk-box">{{ disk_space }}</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>🧩 Usługi</h2>
+      <div class="button-row">
+        <form method="POST" action="/restart_program"><button>🔄 <b>Restartuj program</b></button></form>
+        <form method="POST" action="/restart_www"><button>🌐 <b>Restartuj WWW</b></button></form>
+      </div>
+    </section>
+
+    <section>
+      <h2>🔧 Aktualizacje</h2>
+      <div class="button-row">
+        <form method="POST" action="/update"><button>🔁 <b>Aktualizuj i restartuj program</b></button></form><br><br>
+        <form method="POST" action="/update_system"><button>⬇️<br><br><b>Aktualizuj system</b><br>(apt update)</button></form>
+        <form method="POST" action="/upgrade_system"><button>📦<br><br><b>Uaktualnij pakiety</b><br>(apt full-upgrade)</button></form>
+      </div>
+    </section>
+
+    <section>
+      <h2>💻 Sprzęt</h2>
+      <div class="button-row">
+        <form method="POST" action="/reboot"><button>⚡ <b>Restart Raspberry Pi</b></button></form>
+      </div>
+    </section>
+
+    {% if message %}
+      <div class="status-box">
+        <strong>Status:</strong><br>
+        {{ message }}
+      </div>
+    {% endif %}
+
+    <footer>
+      Bartłomiej Wiórkiewicz<br>Wersja {{ version }}<br>© {{ year }} 
+    </footer>
+  </div>
+  <script>
+    function updateInitAppStatus(status) {
+      const card = document.getElementById('init-app-card');
+      const label = document.getElementById('init-app-status');
+
+      if (status === 'active') {
+        card.style.backgroundColor = '#d4edda';
+        label.innerText = 'Aktywne';
+      } else if (status === 'inactive') {
+        card.style.backgroundColor = '#f8d7da';
+        label.innerText = 'Nieaktywne';
+      } else if (status === 'failed') {
+        card.style.backgroundColor = '#f8d7da';
+        label.innerText = 'Błąd';
+      } else {
+        card.style.backgroundColor = '#f8d7da';
+        label.innerText = 'Nieznany status';
+      }
+    }
+
+    async function fetchStatus() {
+      try {
+        const res = await fetch('/status');
+        const data = await res.json();
+        document.getElementById('temp-box').innerText = data.temperatura + '°C';
+        document.getElementById('uptime-box').innerText = data.uptime;
+        document.getElementById('cpu-box').innerText = data.cpu_load;
+        document.getElementById('ram-box').innerText = data.ram_usage;
+        document.getElementById('disk-box').innerText = data.disk_space;
+        updateInitAppStatus(data.init_app_status);
+      } catch (e) {
+        console.error("Błąd pobierania statusu:", e);
+      }
+    }
+
+    setInterval(fetchStatus, 5000);
+  </script>
+</body>
+</html>
