@@ -16,7 +16,7 @@ HTML = """
       font-family: 'Segoe UI', sans-serif;
       background-color: #f4f6f8;
       padding: 2rem;
-      color: #333;
+      color: #3d3d3d;
     }
     .container {
       max-width: 800px;
@@ -27,7 +27,7 @@ HTML = """
       box-shadow: 0 0 20px rgba(0,0,0,0.05);
     }
     h1, h2 {
-      text-align: center;
+      text-align: left;
       margin-bottom: 1rem;
       color: #2c3e50;
     }
@@ -309,7 +309,7 @@ def update():
       <!DOCTYPE html>
       <html>
       <head>
-          <meta http-equiv="refresh" content="5; URL=/" />
+          <meta http-equiv="refresh" content="10; URL=/" />
           <title>Restartowanie...</title>
           <style>
               body { font-family: sans-serif; text-align: center; margin-top: 5em; }
