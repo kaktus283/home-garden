@@ -31,7 +31,7 @@ version_lt() {
 }
 
 local_version=$(cat "$VERSION_FILE" 2>/dev/null || echo "0.0.0")
-remote_version=$(curl -s "$REMOTE_VERSION_URL")
+remote_version=$(curl -s "${REMOTE_VERSION_URL}?nocache=$RANDOM")
 
 if ! version_lt "$local_version" "$remote_version"; then
   echo "🔄 Wersja lokalna ($local_version) nie jest starsza niż zdalna ($remote_version). Aktualizacja nie jest potrzebna."
