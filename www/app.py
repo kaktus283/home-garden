@@ -86,26 +86,17 @@ HTML = """
     }
 
     .logo-wrapper {
-        /* Możesz dostosować tło tego div'a, jeśli chcesz, żeby obrazek nie przylegał do krawędzi */
         background-color: #3d3d3d;
-        /* Jeśli chcesz takie tło jak w poprzednim pomyśle */
         padding: 10px;
-        /* Doda trochę przestrzeni wokół obrazka, jeśli tło .logo-wrapper jest inne niż białe */
         border-radius: 15px;
-        /* Zaokrąglone rogi dla całego kontenera, jeśli jest tło */
         display: inline-block;
-        /* Ważne, aby kontener dopasował się do rozmiaru obrazka */
     }
 
     .logo-image {
         max-width: 100%;
-        /* Upewnij się, że obraz nie wyjdzie poza swój kontener */
-        height: auto;
-        /* Zachowaj proporcje obrazu */
+        height: 80%;
         border-radius: 15px;
-        /* **To jest klucz do zaokrąglenia rogów obrazu** */
         display: block;
-        /* Usuwa ewentualne niechciane marginesy pod obrazem */
     }
   </style>
 </head>
