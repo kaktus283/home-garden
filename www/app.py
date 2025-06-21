@@ -257,7 +257,8 @@ def status():
 def check_config():
     if request.endpoint not in ("config", "static"):
         settings = load_settings()
-        if not settings.get("is_configured", False):
+        is_configured = settings.get("configuration", {}).get("is_configured", False)
+        if not is_configured:
             return redirect("/config")
 
 
