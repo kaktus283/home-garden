@@ -220,10 +220,10 @@ def reboot():
 @app.route("/config", methods=["GET", "POST"])
 def config():
     settings = load_settings()
-    device_ID = settings.get("device_ID", "")
+    device_ID = settings.get("rpi_number", "")
     if request.method == "POST":
-        device_id = request.form.get("device_ID", "")
-        save_settings({"device_ID": device_id, "is_configured": True})
+        device_id = request.form.get("rpi_number", "")
+        save_settings({"rpi_number": device_id, "is_configured": True})
         return redirect("/")
     return render_template("config.html", device_ID=device_ID)
 
