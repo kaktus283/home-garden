@@ -32,4 +32,5 @@ async function fetchStatus() {
     }
 }
 
+fetchStatus();
 setInterval(fetchStatus, 5000);
