@@ -228,9 +228,8 @@ def config():
         try:
             rpi_number_form = int(rpi_number_form)
         except ValueError:
-            rpi_number_form = 0  # lub obsłuż błąd inaczej
+            rpi_number_form = 0
 
-        # Aktualizacja settings
         settings.setdefault("device", {})["rpi_number"] = rpi_number_form
         settings.setdefault("configuration", {})["is_configured"] = True
         save_settings(settings)
