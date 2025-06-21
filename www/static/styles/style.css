@@ -1,91 +1,104 @@
 body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f6f8;
-      padding: 2rem;
-      color: #3d3d3d;
-    }
-    .container {
-      max-width: 800px;
-      margin: auto;
-      background-color: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.05);
-    }
-    h1, h2 {
-      text-align: left;
-      margin-bottom: 1rem;
-      color: #2c3e50;
-    }
-    section {
-      margin-bottom: 2rem;
-    }
-    .grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-    }
-    .card {
-      flex: 1 1 200px;
-      background: #f1f1f1;
-      padding: 1rem;
-      border-radius: 8px;
-      text-align: center;
-      font-size: 1.1rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    form {
-      display: inline-block;
-      margin: 0.5rem;
-    }
-    .button-row {
-      text-align: center;
-    }
-    button {
-      background-color: #3498db;
-      color: white;
-      border: none;
-      padding: 0.8rem 1.2rem;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.2s;
-      min-width: 220px;
-    }
-    button:hover {
-      background-color: #2980b9;
-    }
-    .status-box {
-      background-color: #fefefe;
-      padding: 1rem;
-      border-left: 4px solid #3498db;
-      margin-top: 1.5rem;
-      font-family: monospace;
-      white-space: pre-wrap;
-    }
-    footer {
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #777;
-    }
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f8;
+    padding: 2rem;
+    color: #3d3d3d;
+}
 
-    .logo-wrapper {
-        background-color: #3d3d3d;
-        padding: 10px;
-        border-radius: 15px;
-        display: inline-block;
-    }
+.container {
+    max-width: 800px;
+    margin: auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
 
-    .logo-image {
-        max-width: 80%;
-        height: auto;
-        border-radius: 15px;
-        display: block;
-    }
+h1,
+h2 {
+    text-align: left;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
 
-    .logo-link {
+section {
+    margin-bottom: 2rem;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.card {
+    flex: 1 1 200px;
+    background: #f1f1f1;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+form {
+    display: inline-block;
+    margin: 0.5rem;
+}
+
+.button-row {
+    text-align: center;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    min-width: 220px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.status-box {
+    background-color: #fefefe;
+    padding: 1rem;
+    border-left: 4px solid #3498db;
+    margin-top: 1.5rem;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.logo-wrapper {
+    /*background-color: #3d3d3d;*/
+    padding: 10px;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+.logo-image {
+    margin: 0px auto;
+    max-width: 80%;
+    height: auto;
+    border-radius: 15px;
+    display: block;
+}
+
+.logo-link {
     display: block;
     text-decoration: none;
-  }
+}
