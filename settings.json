@@ -1,6 +1,6 @@
 {
   "device": {
-    "rpi_number": 2,
+    "rpi_number": 1,
     "port": "/dev/ttyACM0",
     "baudrate": 9600
   },
