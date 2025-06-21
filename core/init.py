@@ -1,19 +1,12 @@
 import threading
 import time
-import json
-import os
 from metrics import init_loggers
-from utils import setup_signal_handlers
+from utils import setup_signal_handlers, get_config_value
 from serial_handler import SerialHandler
 
-
-def get_config():
-    """Loads configuration from the settings.json file in the project's root directory."""
-    settings_path = os.path.join(
-        os.path.dirname(os.path.dirname(__file__)), "settings.json"
-    )
-    with open(settings_path) as f:
-        return json.load(f)
+SERIAL_PORT = get_config_value("device", "port", "/dev/ttyUSB0")
+BAUD_RATE = get_config_value("device", "baudrate", 9600)
+RPI_NUMBER = get_config_value("device", "rpi_number", 1)
 
 
 def send_uptime_metric(metrics_hw, logger_hw):
@@ -24,12 +17,6 @@ def send_uptime_metric(metrics_hw, logger_hw):
         metrics_hw.set("Uptime [minutes]", uptime_minutes)
         logger_hw.info(f"[RPi #{RPI_NUMBER}] - Sent uptime: {uptime_seconds} s")
         time.sleep(60)
-
-
-config = get_config()
-SERIAL_PORT = config["device"]["port"]
-BAUD_RATE = config["device"]["baudrate"]
-RPI_NUMBER = config["device"]["rpi_number"]
 
 
 def main():
