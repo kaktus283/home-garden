@@ -1,9 +1,29 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import subprocess
 import os
 import datetime
+import json
 
 app = Flask(__name__)
+
+SETTINGS_PATH = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "settings.json")
+)
+
+
+def load_settings():
+    try:
+        with open(SETTINGS_PATH, "r") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def save_settings(new_data):
+    settings = load_settings()
+    settings.update(new_data)
+    with open(SETTINGS_PATH, "w") as f:
+        json.dump(settings, f, indent=2)
 
 
 def get_version():
@@ -197,6 +217,17 @@ def reboot():
     return render_with_status(msg)
 
 
+@app.route("/config", methods=["GET", "POST"])
+def config():
+    settings = load_settings()
+    device_ID = settings.get("rpi_number", "")
+    if request.method == "POST":
+        device_id = request.form.get("rpi_number", "")
+        save_settings({"rpi_number": device_id, "is_configured": True})
+        return redirect("/")
+    return render_template("config.html", device_ID=device_ID)
+
+
 @app.route("/status")
 def status():
     temperatura, uptime, cpu_load, ram_usage, disk_space, init_app_status = (
@@ -210,6 +241,14 @@ def status():
         "disk_space": disk_space,
         "init_app_status": init_app_status,
     }
+
+
+@app.before_request
+def check_config():
+    if request.endpoint not in ("config", "static"):
+        settings = load_settings()
+        if not settings.get("is_configured", False):
+            return redirect("/config")
 
 
 if __name__ == "__main__":

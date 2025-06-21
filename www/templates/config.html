@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Konfiguracja urządzenia</title>
+    <link rel="stylesheet" href="/static/styles/style.css">
+</head>
+<body>
+    <div class="config-container">
+        <h2>Konfiguracja urządzenia</h2>
+        <form method="POST">
+            <label for="device_ID">Device ID:</label>
+            <input type="text" id="device_ID" name="device_ID" value="{{ device_ID }}" required>
+            <button type="submit">Zapisz</button>
+        </form>
+    </div>
+</body>
+</html>
