@@ -1,14 +1,27 @@
+/* 
+  Note: Do not modify this file manually.
+  This configuration file is managed automatically by the application.
+  Any manual changes may be overwritten or cause unexpected behavior.
+*/
 {
   "device": {
+    "rpi_name": "RPi",
     "rpi_number": 1,
     "port": "/dev/ttyACM0",
     "baudrate": 9600
   },
-  "metrics": {
-    "interval": 60,
-    "sensors": ["temperature", "humidity", "soil_moisture"]
-  },
   "configuration": {
     "is_configured": false
+  },
+  "logger": {
+    "interval": 60
+  },
+  "metrics": {
+    "interval": 60,
+    "sensors": [
+      "temperature",
+      "humidity",
+      "soil_moisture"
+    ]
   }
 }
