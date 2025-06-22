@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <title>Konfiguracja urządzenia</title>
     <link rel="stylesheet" href="/static/styles/style.css">
 </head>
+
 <body>
     <div class="container">
         <div class="logo-wrapper">
@@ -12,12 +14,42 @@
                 <img src="/static/images/logo.png" alt="Raspberry Pi - Control Panel Logo" class="logo-image">
             </a>
         </div>
-        <h2 style="text-align:center;">Konfiguracja urządzenia</h2>
+        <h2 style="text-align:center;">Device Configuration</h2>
         <div class="card" style="max-width:400px;margin:2rem auto;">
             <form method="POST">
+                <label for="device_name">Device Name:</label>
+                <input type="text" id="device_name" name="device_name" value="{{ device_name }}" required
+                    style="width:100%;margin-bottom:1rem;padding:0.5rem;border-radius:6px;border:1px solid #ccc;">
+
                 <label for="rpi_number">Device ID:</label>
-                <input type="number" id="rpi_number" name="rpi_number" value="{{ rpi_number }}" required style="width:100%;margin-bottom:1rem;padding:0.5rem;border-radius:6px;border:1px solid #ccc;">
-                <button type="submit" style="width:100%;">Zapisz</button>
+                <input type="number" id="rpi_number" name="rpi_number" value="{{ rpi_number }}" required
+                    style="width:100%;margin-bottom:1rem;padding:0.5rem;border-radius:6px;border:1px solid #ccc;">
+
+                <label for="serial_port">Serial Port:</label>
+                <input type="text" id="serial_port" name="serial_port" value="{{ serial_port }}" required
+                    style="width:100%;margin-bottom:1rem;padding:0.5rem;border-radius:6px;border:1px solid #ccc;">
+
+                <label for="serial_bandwidth">Serial Bandwidth:</label>
+                <select id="serial_bandwidth" name="serial_bandwidth" required
+                    style="width:100%;margin-bottom:1rem;padding:0.5rem;border-radius:6px;border:1px solid #ccc;">
+                    {% set baudrates = [300, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, 115200, 230400,
+                    250000] %}
+                    {% for rate in baudrates %}
+                    <option value="{{ rate }}" {% if serial_bandwidth==rate %}selected{% endif %}>{{ rate }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="logdash_logger_api_key">Logdash API Key (logger):</label>
+                <input type="text" id="logdash_logger_api_key" name="logdash_logger_api_key"
+                    value="{{ logdash_logger_api_key }}" required
+                    style="width:100%;margin-bottom:1rem;padding:0.5rem;border-radius:6px;border:1px solid #ccc;">
+
+                <label for="logdash_metrics_api_key">Logdash API Key (metrics):</label>
+                <input type="text" id="logdash_metrics_api_key" name="logdash_metrics_api_key"
+                    value="{{ logdash_metrics_api_key }}" required
+                    style="width:100%;margin-bottom:1rem;padding:0.5rem;border-radius:6px;border:1px solid #ccc;">
+
+                <button type="submit" style="width:100%;">Save</button>
             </form>
         </div>
         {% if message %}
@@ -27,8 +59,9 @@
         </div>
         {% endif %}
         <footer>
-            Bartłomiej Wiórkiewicz<br>Wersja {{ version }}<br>© {{ year }}
+            Bartłomiej Wiórkiewicz<br>Version {{ version }}<br>© {{ year }}
         </footer>
     </div>
 </body>
+
 </html>

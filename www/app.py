@@ -234,7 +234,12 @@ def config():
         settings.setdefault("configuration", {})["is_configured"] = True
         save_settings(settings)
         return redirect("/")
-    return render_template("config.html", rpi_number=rpi_number)
+    return render_template(
+        "config.html",
+        rpi_number=rpi_number,
+        version=get_version(),
+        year=datetime.datetime.now().year,
+    )
 
 
 @app.route("/status")
