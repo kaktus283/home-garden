@@ -1,5 +1,4 @@
 #!/bin/bash
-set -ex
 
 # Setting constants
 REPO_PATH="/home/wiewior/App"
@@ -17,10 +16,10 @@ version_lt() {
   local ver1=($1)
   local ver2=($2)
 
-  for ((i=${#ver1[@]}; i<${#ver2[@]}; i++)); do ver1[i]=0; done
-  for ((i=${#ver2[@]}; i<${#ver1[@]}; i++)); do ver2[i]=0; done
+  for ((i = ${#ver1[@]}; i < ${#ver2[@]}; i++)); do ver1[i]=0; done
+  for ((i = ${#ver2[@]}; i < ${#ver1[@]}; i++)); do ver2[i]=0; done
 
-  for ((i=0; i<${#ver1[@]}; i++)); do
+  for ((i = 0; i < ${#ver1[@]}; i++)); do
     if ((10#${ver1[i]} < 10#${ver2[i]})); then
       return 0
     elif ((10#${ver1[i]} > 10#${ver2[i]})); then

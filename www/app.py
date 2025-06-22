@@ -220,12 +220,26 @@ def reboot():
 @app.route("/config", methods=["GET", "POST"])
 def config():
     settings = load_settings()
-    device_ID = settings.get("rpi_number", "")
+    rpi_number = settings.get("device", {}).get("rpi_number", "")
+    if isinstance(rpi_number, str) and rpi_number.isdigit():
+        rpi_number = int(rpi_number)
     if request.method == "POST":
-        device_id = request.form.get("rpi_number", "")
-        save_settings({"rpi_number": device_id, "is_configured": True})
+        rpi_number_form = request.form.get("rpi_number", "")
+        try:
+            rpi_number_form = int(rpi_number_form)
+        except ValueError:
+            rpi_number_form = 0
+
+        settings.setdefault("device", {})["rpi_number"] = rpi_number_form
+        settings.setdefault("configuration", {})["is_configured"] = True
+        save_settings(settings)
         return redirect("/")
-    return render_template("config.html", device_ID=device_ID)
+    return render_template(
+        "config.html",
+        rpi_number=rpi_number,
+        version=get_version(),
+        year=datetime.datetime.now().year,
+    )
 
 
 @app.route("/status")
@@ -247,7 +261,8 @@ def status():
 def check_config():
     if request.endpoint not in ("config", "static"):
         settings = load_settings()
-        if not settings.get("is_configured", False):
+        is_configured = settings.get("configuration", {}).get("is_configured", False)
+        if not is_configured:
             return redirect("/config")
 
 

@@ -1,14 +1,22 @@
 {
   "device": {
+    "rpi_name": "RPi",
     "rpi_number": 1,
     "port": "/dev/ttyACM0",
     "baudrate": 9600
   },
-  "metrics": {
-    "interval": 60,
-    "sensors": ["temperature", "humidity", "soil_moisture"]
-  },
   "configuration": {
     "is_configured": false
+  },
+  "logger": {
+    "interval": 60
+  },
+  "metrics": {
+    "interval": 60,
+    "sensors": [
+      "temperature",
+      "humidity",
+      "soil_moisture"
+    ]
   }
 }
