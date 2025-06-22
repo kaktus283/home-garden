@@ -21,7 +21,7 @@ async function fetchStatus() {
     try {
         const res = await fetch('/status');
         const data = await res.json();
-        document.getElementById('temp-box').innerText = data.temperatura + '°C';
+        document.getElementById('temp-box').innerText = data.temperature + '°C';
         document.getElementById('uptime-box').innerText = data.uptime;
         document.getElementById('cpu-box').innerText = data.cpu_load;
         document.getElementById('ram-box').innerText = data.ram_usage;
