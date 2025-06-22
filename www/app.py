@@ -54,9 +54,9 @@ def get_system_status():
     # CPU temperature
     try:
         temp = subprocess.check_output(["vcgencmd", "measure_temp"]).decode()
-        temperatura = temp.replace("temp=", "").replace("'C\n", "")
+        temperature = temp.replace("temp=", "").replace("'C\n", "")
     except:
-        temperatura = "N/A"
+        temperature = "N/A"
 
     # Uptime
     uptime_raw = subprocess.getoutput("uptime -p")
@@ -80,16 +80,16 @@ def get_system_status():
     # Service status
     init_app_status = get_service_status("init_app.service")
 
-    return temperatura, uptime, cpu_load, ram_usage, disk_space, init_app_status
+    return temperature, uptime, cpu_load, ram_usage, disk_space, init_app_status
 
 
 def render_with_status(message):
-    temperatura, uptime, cpu_load, ram_usage, disk_space, init_app_status = (
+    temperature, uptime, cpu_load, ram_usage, disk_space, init_app_status = (
         get_system_status()
     )
     return render_template(
         "index.html",
-        temperatura=temperatura,
+        temperature=temperature,
         uptime=uptime,
         cpu_load=cpu_load,
         ram_usage=ram_usage,
@@ -103,12 +103,12 @@ def render_with_status(message):
 
 @app.route("/")
 def index():
-    temperatura, uptime, cpu_load, ram_usage, disk_space, init_app_status = (
+    temperature, uptime, cpu_load, ram_usage, disk_space, init_app_status = (
         get_system_status()
     )
     return render_template(
         "index.html",
-        temperatura=temperatura,
+        temperature=temperature,
         uptime=uptime,
         cpu_load=cpu_load,
         ram_usage=ram_usage,
@@ -244,11 +244,11 @@ def config():
 
 @app.route("/status")
 def status():
-    temperatura, uptime, cpu_load, ram_usage, disk_space, init_app_status = (
+    temperature, uptime, cpu_load, ram_usage, disk_space, init_app_status = (
         get_system_status()
     )
     return {
-        "temperatura": temperatura,
+        "temperature": temperature,
         "uptime": uptime,
         "cpu_load": cpu_load,
         "ram_usage": ram_usage,
