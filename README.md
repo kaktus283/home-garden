@@ -9,11 +9,12 @@ Projekt opiera się m.in. na rozwiązaniu [**Logdash.io**](https://logdash.io), 
 
 ---
 
-## 🔧 Instalacja
+# 🔧 Instalacja
 
 Proces instalacji jest obecnie dość złożony i wymaga ręcznej konfiguracji kilku komponentów (Raspberry Pi, Arduino, czujniki, Logdash, itp.).  
 ~~Pracuję nad uproszczeniem całego procesu i udostępnieniem gotowego przewodnika krok po kroku.~~
 
+Od wersji **1.0.6036** instalację można wykonać za pomocą poniższej komendy.  
 ```bash
 curl -sSL https://raw.githubusercontent.com/kaktus283/home-garden/main/install.sh | bash
 ```
@@ -25,14 +26,14 @@ curl -sSL https://raw.githubusercontent.com/kaktus283/home-garden/main/install.s
 
 ---
 
-## 🔄 Aktualizacje OTA (Over-the-Air)
+# 🔄 Aktualizacje OTA (Over-the-Air)
 
-Aktualizacja systemu w obecnym stanie może być jeszcze bardziej wymagająca niż sama instalacja – dotyczy to zarówno firmware'u urządzeń, jak i konfiguracji backendu.
+~~Aktualizacja systemu w obecnym stanie może być jeszcze bardziej wymagająca niż sama instalacja – dotyczy to zarówno firmware'u urządzeń, jak i konfiguracji backendu.~~
 
 ~~Docelowo planuję wdrożyć uproszczony mechanizm aktualizacji OTA (Over-the-Air) oraz automatyczne sprawdzanie wersji.~~
 
-Od wersji 1.0.1000 aktualizację OTA można wykonać za pomocą specjalnego modułu w Panelu zarządzania RaspberryPi.  
-Moduł automatycznie sprawdza dostępność nowszej wersji i – w razie potrzeby – pobiera ją.
+Od wersji **1.0.1000** aktualizację OTA można wykonać za pomocą specjalnego modułu w Panelu zarządzania RaspberryPi.  
+Moduł automatycznie sprawdza dostępność nowszej wersji i w razie potrzeby pobiera ją.
 
 <p align="center">
   <img width="330" alt="image" src="https://github.com/user-attachments/assets/2090201f-59f0-470a-a3b5-7fa5468a88a3" />
@@ -40,13 +41,13 @@ Moduł automatycznie sprawdza dostępność nowszej wersji i – w razie potrzeb
 
 ---
 
-## 📄 Licencja
+# 📄 Licencja
 
 (Licencja zostanie określona w przyszłości.)
 
 ---
 
-## 🤝 Współpraca
+# 🤝 Współpraca
 
 Chcesz pomóc rozwinąć projekt? Super!  
 Planuję stworzyć roadmapę i otworzyć zgłoszenia (issues), które będzie można współdzielić i rozwijać. Pull requesty mile widziane.
