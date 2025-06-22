@@ -26,14 +26,13 @@
                     style="width:100%;margin-bottom:1rem;padding:0.5rem;border-radius:6px;border:1px solid #ccc;">
 
                 <label for="serial_port">Serial Port:</label>
-                <input type="text" id="serial_port" name="serial_port" value="{{ serial_port }}" required
+                <input type="text" id="serial_port" name="serial_port" value="{{ serial_port or '/dev/ttyACM0/' }}" required
                     style="width:100%;margin-bottom:1rem;padding:0.5rem;border-radius:6px;border:1px solid #ccc;">
 
                 <label for="serial_bandwidth">Serial Bandwidth:</label>
                 <select id="serial_bandwidth" name="serial_bandwidth" required
                     style="width:100%;margin-bottom:1rem;padding:0.5rem;border-radius:6px;border:1px solid #ccc;">
-                    {% set baudrates = [300, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, 115200, 230400,
-                    250000] %}
+                    {% set baudrates = [9600, 14400, 19200, 28800, 38400, 57600, 115200] %}
                     {% for rate in baudrates %}
                     <option value="{{ rate }}" {% if serial_bandwidth==rate %}selected{% endif %}>{{ rate }}</option>
                     {% endfor %}
