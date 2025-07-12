@@ -2,7 +2,7 @@ import serial
 import time
 from utils import get_config_value
 
-NO_DATA_TIMEOUT = 30
+NO_DATA_TIMEOUT = 120
 METRICS_BATCH_SIZE = 10
 RPI_NUMBER = get_config_value("device", "rpi_number", 1)
 
@@ -41,7 +41,7 @@ class SerialHandler:
 
     def reset_connection(self):
         self.logger.warn(
-            f"[RPi #{RPI_NUMBER}] - No data for timeout, resetting serial port."
+            f"[RPi #{RPI_NUMBER}] - No data for timeout {NO_DATA_TIMEOUT} seconds, resetting serial port."
         )
         self.close()
         time.sleep(2)
