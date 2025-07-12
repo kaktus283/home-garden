@@ -64,11 +64,11 @@ class SerialHandler:
     def convert_raw_to_percent(sensor_value):
         dry_value = 742
         wet_value = 505
-        humidity_percent = int(
+        moisture_percent = int(
             (sensor_value - dry_value) * 100 / (wet_value - dry_value)
         )
-        humidity_percent = max(0, min(100, humidity_percent))
-        return humidity_percent
+        moisture_percent = max(0, min(100, moisture_percent))
+        return moisture_percent
 
     def handle_line(self, line):
         if line == "Start pomiaru wilgotności gleby...":
@@ -81,7 +81,7 @@ class SerialHandler:
             moisture_raw = float(data["wilgotnosc"])
             moisture_percent = self.convert_raw_to_percent(moisture_raw)
             self.logger.info(
-                f"[RPi #{RPI_NUMBER}] - Moisture raw: {moisture_raw} | Moisture percent: {self.convert_raw_to_percent(moisture_percent)}%"
+                f"[RPi #{RPI_NUMBER}] - Moisture raw: {moisture_raw} | Moisture percent: {moisture_percent}%"
             )
 
             self.moisture_readings.append(moisture_percent)
