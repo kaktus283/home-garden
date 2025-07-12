@@ -62,6 +62,10 @@ class SerialHandler:
                 self.reset_connection()
 
     def handle_line(self, line):
+        # Temporary calibration data from Arduino
+        # const int dryValue = 742;
+        # const int wetValue = 505;
+
         if line == "Start pomiaru wilgotności gleby...":
             return
 
@@ -70,7 +74,7 @@ class SerialHandler:
 
             data = json.loads(line)
             moisture = float(data["wilgotnosc"])
-            self.logger.info(f"[RPi #{RPI_NUMBER}] - Moisture: {moisture}%")
+            self.logger.info(f"[RPi #{RPI_NUMBER}] - Moisture raw: {moisture}%")
 
             self.moisture_readings.append(moisture)
 
