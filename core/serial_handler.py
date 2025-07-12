@@ -78,12 +78,13 @@ class SerialHandler:
             import json
 
             data = json.loads(line)
-            moisture = float(data["wilgotnosc"])
+            moisture_raw = float(data["wilgotnosc"])
+            moisture_percent = self.convert_raw_to_percent(moisture_raw)
             self.logger.info(
-                f"[RPi #{RPI_NUMBER}] - Moisture raw: {moisture} | Moisture percent: {self.convert_raw_to_percent(moisture)}%"
+                f"[RPi #{RPI_NUMBER}] - Moisture raw: {moisture_raw} | Moisture percent: {self.convert_raw_to_percent(moisture_percent)}%"
             )
 
-            self.moisture_readings.append(moisture)
+            self.moisture_readings.append(moisture_percent)
 
             if len(self.moisture_readings) >= METRICS_BATCH_SIZE:
                 avg_moisture = int(
