@@ -61,7 +61,7 @@ class SerialHandler:
             if time.time() - self.last_data_time > NO_DATA_TIMEOUT:
                 self.reset_connection()
 
-    def convert_raw_to_percent(sensor_value):
+    def convert_raw_to_percent(self, sensor_value):
         dry_value = 742
         wet_value = 505
         moisture_percent = int(
