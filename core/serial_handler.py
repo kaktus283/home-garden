@@ -79,7 +79,9 @@ class SerialHandler:
 
             data = json.loads(line)
             moisture_raw = float(data["wilgotnosc"])
+            print("R" + moisture_raw)
             moisture_percent = self.convert_raw_to_percent(moisture_raw)
+            print("P" + moisture_percent)
             self.logger.info(
                 f"[RPi #{RPI_NUMBER}] - Moisture raw: {moisture_raw} | Moisture percent: {moisture_percent}%"
             )
