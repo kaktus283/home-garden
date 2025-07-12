@@ -41,7 +41,7 @@ class SerialHandler:
 
     def reset_connection(self):
         self.logger.warn(
-            f"[RPi #{RPI_NUMBER}] - No data for timeout {NO_DATA_TIMEOUT} seconds, resetting serial port."
+            f"[RPi #{RPI_NUMBER}] - No data for timeout ({NO_DATA_TIMEOUT}s), resetting serial port."
         )
         self.close()
         time.sleep(2)
