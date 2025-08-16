@@ -239,7 +239,21 @@ def dashboard():
 
 @app.route("/device")
 def device():
-    return render_template("device.html")
+    temperature, uptime, cpu_load, ram_usage, disk_space, init_app_status = (
+        get_system_status()
+    )
+    return render_template(
+        "device.html",
+        temperature=temperature,
+        uptime=uptime,
+        cpu_load=cpu_load,
+        ram_usage=ram_usage,
+        disk_space=disk_space,
+        init_app_status=init_app_status,
+        message=None,
+        year=datetime.datetime.now().year,
+        version=get_version(),
+    )
 
 
 @app.route("/config", methods=["GET", "POST"])
