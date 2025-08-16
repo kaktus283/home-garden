@@ -238,7 +238,7 @@ def dashboard():
 
 
 @app.route("/device")
-def dashboard():
+def device():
     return render_template("device.html")
 
 
