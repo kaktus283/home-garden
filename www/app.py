@@ -234,6 +234,11 @@ def reboot():
 
 @app.route("/dashboard")
 def dashboard():
+    return render_template("dashboard.html")
+
+
+@app.route("/device")
+def dashboard():
     return render_template("device.html")
 
 

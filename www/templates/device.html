@@ -14,126 +14,328 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   </head>
   <body>
-    <div class="relative flex size-full min-h-screen flex-col bg-[#101816] dark group/design-root overflow-x-hidden" style='font-family: Lexend, "Noto Sans", sans-serif;'>
+    <div
+      class="relative flex size-full min-h-screen flex-col bg-[#101816] dark group/design-root overflow-x-hidden"
+      style="--select-button-svg: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724px%27 height=%2724px%27 fill=%27rgb(154,188,176)%27 viewBox=%270 0 256 256%27%3e%3cpath d=%27M181.66,170.34a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-48-48a8,8,0,0,1,11.32-11.32L128,212.69l42.34-42.35A8,8,0,0,1,181.66,170.34Zm-96-84.68L128,43.31l42.34,42.35a8,8,0,0,0,11.32-11.32l-48-48a8,8,0,0,0-11.32,0l-48,48A8,8,0,0,0,85.66,85.66Z%27%3e%3c/path%3e%3c/svg%3e'); font-family: Lexend, &quot;Noto Sans&quot;, sans-serif;"
+    >
       <div class="layout-container flex h-full grow flex-col">
         <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#273a33] px-10 py-3">
           <div class="flex items-center gap-4 text-white">
             <div class="size-4">
               <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_6_330)">
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z"
-                    fill="currentColor"
-                  ></path>
-                </g>
-                <defs>
-                  <clipPath id="clip0_6_330"><rect width="48" height="48" fill="white"></rect></clipPath>
-                </defs>
+                <path
+                  d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z"
+                  fill="currentColor"
+                ></path>
               </svg>
             </div>
-            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Verdant</h2>
+            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Garden Manager</h2>
           </div>
           <div class="flex flex-1 justify-end gap-8">
             <div class="flex items-center gap-9">
-              <a class="text-white text-sm font-medium leading-normal" href="#">My Garden</a>
-              <a class="text-white text-sm font-medium leading-normal" href="#">Tasks</a>
-              <a class="text-white text-sm font-medium leading-normal" href="#">Calendar</a>
-              <a class="text-white text-sm font-medium leading-normal" href="#">Library</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Dashboard</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Devices</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Automation</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Settings</a>
             </div>
-            <button
-              class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 bg-[#273a33] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
-            >
-              <div class="text-white" data-icon="Bell" data-size="20px" data-weight="regular">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
-                  <path
-                    d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"
-                  ></path>
-                </svg>
-              </div>
-            </button>
             <div
               class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBPmFroArdQfuPp2dCTMSGpLdqBNWH8IpXAVir_3-GuJBKw61Hy0E8MXAe2A9sTv6aj6DlM621O0yvqG5hA2OMokDe-aetznuEHzSpGFfoKLrNFD0CexhDpMNfTW6QKNGe7xPXd4aIXQRfROwaN5_PItFOqDnWt2aaMUYKK0XSAikivQhHwc1EDVmhxYA5T_aX1dMj19eIIniqYBs6ErA3lSxc9nVAxWbUgDzhBb8GK_9LvSLkjHsgvjjfLNT9dbGM0sPam68rCL_Tv");'
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCClLhyOy1k0AgumwWcrmcnaHjZmUseCz3lwFwEL6aw9aJrEPLXlobWGQMNeKuu9GvRqj8TIvR4Adfu34uLG6l_fz4v3MREiJQuAEpHaT2LBcCO5bsr4IZ0zlfc2JuYEwwR9zE_N0m32euhz8so7TChG-619q794RSiXKeujWAc4FCUWvevoBTYuihb6E2ISShX_qjAHH_j8vfO-HO8enkXMGopczBs7cuG033Tqq2luvkMoNAV_6gPKUFl8kIlz9CHtBW4fOwDWKua");'
             ></div>
           </div>
         </header>
-        <div class="px-40 flex flex-1 justify-center py-5">
-          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+        <div class="gap-1 px-6 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[920px] flex-1">
             <div class="flex flex-wrap justify-between gap-3 p-4">
-              <p class="text-white tracking-light text-[32px] font-bold leading-tight min-w-72">My Garden</p>
+              <div class="flex min-w-72 flex-col gap-3">
+                <p class="text-white tracking-light text-[32px] font-bold leading-tight">Device Details</p>
+                <p class="text-[#9abcb0] text-sm font-normal leading-normal">View and manage your device settings and data.</p>
+              </div>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Device Overview</h2>
+            <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+              <div class="flex flex-1 gap-3 rounded-lg border border-[#39564c] bg-[#1b2823] p-4 flex-col">
+                <div class="text-white" data-icon="DeviceTablet" data-size="24px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M192,24H64A24,24,0,0,0,40,48V208a24,24,0,0,0,24,24H192a24,24,0,0,0,24-24V48A24,24,0,0,0,192,24ZM56,72H200V184H56Zm8-32H192a8,8,0,0,1,8,8v8H56V48A8,8,0,0,1,64,40ZM192,216H64a8,8,0,0,1-8-8v-8H200v8A8,8,0,0,1,192,216Z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <h2 class="text-white text-base font-bold leading-tight">Type</h2>
+                  <p class="text-[#9abcb0] text-sm font-normal leading-normal">Raspberry Pi</p>
+                </div>
+              </div>
+              <div class="flex flex-1 gap-3 rounded-lg border border-[#39564c] bg-[#1b2823] p-4 flex-col">
+                <div class="text-white" data-icon="MapPin" data-size="24px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <h2 class="text-white text-base font-bold leading-tight">Location</h2>
+                  <p class="text-[#9abcb0] text-sm font-normal leading-normal">Living Room</p>
+                </div>
+              </div>
+              <div class="flex flex-1 gap-3 rounded-lg border border-[#39564c] bg-[#1b2823] p-4 flex-col">
+                <div class="text-white" data-icon="WifiHigh" data-size="24px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M140,204a12,12,0,1,1-12-12A12,12,0,0,1,140,204ZM237.08,87A172,172,0,0,0,18.92,87,8,8,0,0,0,29.08,99.37a156,156,0,0,1,197.84,0A8,8,0,0,0,237.08,87ZM205,122.77a124,124,0,0,0-153.94,0A8,8,0,0,0,61,135.31a108,108,0,0,1,134.06,0,8,8,0,0,0,11.24-1.3A8,8,0,0,0,205,122.77Zm-32.26,35.76a76.05,76.05,0,0,0-89.42,0,8,8,0,0,0,9.42,12.94,60,60,0,0,1,70.58,0,8,8,0,1,0,9.42-12.94Z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <h2 class="text-white text-base font-bold leading-tight">Services Status</h2>
+                  <p class="text-[#9abcb0] text-sm font-normal leading-normal">Active</p>
+                </div>
+              </div>
+              <div class="flex flex-1 gap-3 rounded-lg border border-[#39564c] bg-[#1b2823] p-4 flex-col">
+                <div class="text-white" data-icon="Cpu" data-size="24px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M152,96H104a8,8,0,0,0-8,8v48a8,8,0,0,0,8,8h48a8,8,0,0,0,8-8V104A8,8,0,0,0,152,96Zm-8,48H112V112h32Zm88,0H216V112h16a8,8,0,0,0,0-16H216V56a16,16,0,0,0-16-16H160V24a8,8,0,0,0-16,0V40H112V24a8,8,0,0,0-16,0V40H56A16,16,0,0,0,40,56V96H24a8,8,0,0,0,0,16H40v32H24a8,8,0,0,0,0,16H40v40a16,16,0,0,0,16,16H96v16a8,8,0,0,0,16,0V216h32v16a8,8,0,0,0,16,0V216h40a16,16,0,0,0,16-16V160h16a8,8,0,0,0,0-16Zm-32,56H56V56H200v95.87s0,.09,0,.13,0,.09,0,.13V200Z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <h2 class="text-white text-base font-bold leading-tight">CPU Temperature</h2>
+                  <p class="text-[#9abcb0] text-sm font-normal leading-normal">45°C</p>
+                </div>
+              </div>
+              <div class="flex flex-1 gap-3 rounded-lg border border-[#39564c] bg-[#1b2823] p-4 flex-col">
+                <div class="text-white" data-icon="Clock" data-size="24px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <h2 class="text-white text-base font-bold leading-tight">Uptime</h2>
+                  <p class="text-[#9abcb0] text-sm font-normal leading-normal">2 days, 14 hours</p>
+                </div>
+              </div>
+              <div class="flex flex-1 gap-3 rounded-lg border border-[#39564c] bg-[#1b2823] p-4 flex-col">
+                <div class="text-white" data-icon="ChartLine" data-size="24px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0v94.37L90.73,98a8,8,0,0,1,10.07-.38l58.81,44.11L218.73,90a8,8,0,1,1,10.54,12l-64,56a8,8,0,0,1-10.07.38L96.39,114.29,40,163.63V200H224A8,8,0,0,1,232,208Z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <h2 class="text-white text-base font-bold leading-tight">CPU Usage</h2>
+                  <p class="text-[#9abcb0] text-sm font-normal leading-normal">25%</p>
+                </div>
+              </div>
+              <div class="flex flex-1 gap-3 rounded-lg border border-[#39564c] bg-[#1b2823] p-4 flex-col">
+                <div class="text-white" data-icon="Brain" data-size="24px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M248,124a56.11,56.11,0,0,0-32-50.61V72a48,48,0,0,0-88-26.49A48,48,0,0,0,40,72v1.39a56,56,0,0,0,0,101.2V176a48,48,0,0,0,88,26.49A48,48,0,0,0,216,176v-1.41A56.09,56.09,0,0,0,248,124ZM88,208a32,32,0,0,1-31.81-28.56A55.87,55.87,0,0,0,64,180h8a8,8,0,0,0,0-16H64A40,40,0,0,1,50.67,86.27,8,8,0,0,0,56,78.73V72a32,32,0,0,1,64,0v68.26A47.8,47.8,0,0,0,88,128a8,8,0,0,0,0,16,32,32,0,0,1,0,64Zm104-44h-8a8,8,0,0,0,0,16h8a55.87,55.87,0,0,0,7.81-.56A32,32,0,1,1,168,144a8,8,0,0,0,0-16,47.8,47.8,0,0,0-32,12.26V72a32,32,0,0,1,64,0v6.73a8,8,0,0,0,5.33,7.54A40,40,0,0,1,192,164Zm16-52a8,8,0,0,1-8,8h-4a36,36,0,0,1-36-36V80a8,8,0,0,1,16,0v4a20,20,0,0,0,20,20h4A8,8,0,0,1,208,112ZM60,120H56a8,8,0,0,1,0-16h4A20,20,0,0,0,80,84V80a8,8,0,0,1,16,0v4A36,36,0,0,1,60,120Z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <h2 class="text-white text-base font-bold leading-tight">RAM Usage</h2>
+                  <p class="text-[#9abcb0] text-sm font-normal leading-normal">4GB / 8GB</p>
+                </div>
+              </div>
+              <div class="flex flex-1 gap-3 rounded-lg border border-[#39564c] bg-[#1b2823] p-4 flex-col">
+                <div class="text-white" data-icon="HardDrive" data-size="24px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M224,64H32A16,16,0,0,0,16,80v96a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V80A16,16,0,0,0,224,64Zm0,112H32V80H224v96Zm-24-48a12,12,0,1,1-12-12A12,12,0,0,1,200,128Z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <h2 class="text-white text-base font-bold leading-tight">HDD Usage</h2>
+                  <p class="text-[#9abcb0] text-sm font-normal leading-normal">50GB / 256GB</p>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Real-time Metrics</h2>
+            <div class="flex flex-wrap gap-4 p-4">
+              <div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 border border-[#39564c]">
+                <p class="text-white text-base font-medium leading-normal">Temperature</p>
+                <p class="text-white tracking-light text-2xl font-bold leading-tight">24°C</p>
+              </div>
+              <div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 border border-[#39564c]">
+                <p class="text-white text-base font-medium leading-normal">Humidity</p>
+                <p class="text-white tracking-light text-2xl font-bold leading-tight">65%</p>
+              </div>
+              <div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 border border-[#39564c]">
+                <p class="text-white text-base font-medium leading-normal">Soil Moisture</p>
+                <p class="text-white tracking-light text-2xl font-bold leading-tight">30%</p>
+              </div>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Historical Data</h2>
+            <div class="flex flex-wrap gap-4 px-4 py-6">
+              <div class="flex min-w-72 flex-1 flex-col gap-2 rounded-xl border border-[#39564c] p-6">
+                <p class="text-white text-base font-medium leading-normal">Temperature Trend</p>
+                <p class="text-white tracking-light text-[32px] font-bold leading-tight truncate">24°C</p>
+                <div class="flex gap-1">
+                  <p class="text-[#9abcb0] text-base font-normal leading-normal">Last 7 Days</p>
+                  <p class="text-[#0bda49] text-base font-medium leading-normal">+2%</p>
+                </div>
+                <div class="flex min-h-[180px] flex-1 flex-col gap-8 py-4">
+                  <svg width="100%" height="148" viewBox="-3 0 478 150" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                    <path
+                      d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H326.769H0V109Z"
+                      fill="url(#paint0_linear_1131_5935)"
+                    ></path>
+                    <path
+                      d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25"
+                      stroke="#9abcb0"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                    ></path>
+                    <defs>
+                      <linearGradient id="paint0_linear_1131_5935" x1="236" y1="1" x2="236" y2="149" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#273a33"></stop>
+                        <stop offset="1" stop-color="#273a33" stop-opacity="0"></stop>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div class="flex justify-around">
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Mon</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Tue</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Wed</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Thu</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Fri</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Sat</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Sun</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex min-w-72 flex-1 flex-col gap-2 rounded-xl border border-[#39564c] p-6">
+                <p class="text-white text-base font-medium leading-normal">Humidity Trend</p>
+                <p class="text-white tracking-light text-[32px] font-bold leading-tight truncate">65%</p>
+                <div class="flex gap-1">
+                  <p class="text-[#9abcb0] text-base font-normal leading-normal">Last 7 Days</p>
+                  <p class="text-[#fa5838] text-base font-medium leading-normal">-5%</p>
+                </div>
+                <div class="flex min-h-[180px] flex-1 flex-col gap-8 py-4">
+                  <svg width="100%" height="148" viewBox="-3 0 478 150" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                    <path
+                      d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H326.769H0V109Z"
+                      fill="url(#paint0_linear_1131_5935)"
+                    ></path>
+                    <path
+                      d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25"
+                      stroke="#9abcb0"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                    ></path>
+                    <defs>
+                      <linearGradient id="paint0_linear_1131_5935" x1="236" y1="1" x2="236" y2="149" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#273a33"></stop>
+                        <stop offset="1" stop-color="#273a33" stop-opacity="0"></stop>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div class="flex justify-around">
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Mon</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Tue</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Wed</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Thu</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Fri</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Sat</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Sun</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex min-w-72 flex-1 flex-col gap-2 rounded-xl border border-[#39564c] p-6">
+                <p class="text-white text-base font-medium leading-normal">Soil Moisture Trend</p>
+                <p class="text-white tracking-light text-[32px] font-bold leading-tight truncate">30%</p>
+                <div class="flex gap-1">
+                  <p class="text-[#9abcb0] text-base font-normal leading-normal">Last 7 Days</p>
+                  <p class="text-[#0bda49] text-base font-medium leading-normal">+3%</p>
+                </div>
+                <div class="flex min-h-[180px] flex-1 flex-col gap-8 py-4">
+                  <svg width="100%" height="148" viewBox="-3 0 478 150" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                    <path
+                      d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H326.769H0V109Z"
+                      fill="url(#paint0_linear_1131_5935)"
+                    ></path>
+                    <path
+                      d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25"
+                      stroke="#9abcb0"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                    ></path>
+                    <defs>
+                      <linearGradient id="paint0_linear_1131_5935" x1="236" y1="1" x2="236" y2="149" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#273a33"></stop>
+                        <stop offset="1" stop-color="#273a33" stop-opacity="0"></stop>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div class="flex justify-around">
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Mon</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Tue</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Wed</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Thu</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Fri</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Sat</p>
+                    <p class="text-[#9abcb0] text-[13px] font-bold leading-normal tracking-[0.015em]">Sun</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="layout-content-container flex flex-col w-[360px]">
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Device Settings</h2>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-white text-base font-medium leading-normal pb-2">Update Frequency</p>
+                <select
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border border-[#39564c] bg-[#1b2823] focus:border-[#39564c] h-14 bg-[image:--select-button-svg] placeholder:text-[#9abcb0] p-[15px] text-base font-normal leading-normal"
+                >
+                  <option value="one"></option>
+                  <option value="two">two</option>
+                  <option value="three">three</option>
+                </select>
+              </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-white text-base font-medium leading-normal pb-2">Alert Threshold (Temperature)</p>
+                <input
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border border-[#39564c] bg-[#1b2823] focus:border-[#39564c] h-14 placeholder:text-[#9abcb0] p-[15px] text-base font-normal leading-normal"
+                  value=""
+                />
+              </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-white text-base font-medium leading-normal pb-2">Alert Threshold (Humidity)</p>
+                <input
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border border-[#39564c] bg-[#1b2823] focus:border-[#39564c] h-14 placeholder:text-[#9abcb0] p-[15px] text-base font-normal leading-normal"
+                  value=""
+                />
+              </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-white text-base font-medium leading-normal pb-2">Alert Threshold (Soil Moisture)</p>
+                <input
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border border-[#39564c] bg-[#1b2823] focus:border-[#39564c] h-14 placeholder:text-[#9abcb0] p-[15px] text-base font-normal leading-normal"
+                  value=""
+                />
+              </label>
+            </div>
+            <div class="flex px-4 py-3">
               <button
-                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 bg-[#273a33] text-white text-sm font-medium leading-normal"
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 flex-1 bg-[#019863] text-white text-sm font-bold leading-normal tracking-[0.015em]"
               >
-                <span class="truncate">Add Plant</span>
+                <span class="truncate">Save Settings</span>
               </button>
-            </div>
-            <h3 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Outdoor</h3>
-            <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCjJBzoeG-ZIGN_akYAOIlKGX7NPhv1s0_eEhJaz3F_PFkJYiINk-g_VsHPH6M4bIwvScLgjtwCRnszRvmKc6foYyzWtxjPyUg93zTihZjApdOzK2jRyMDWgxm75AV6m0Q80qE18p9mqDwLFqf7F4W2yYizhZNCekXVKOtrzHN1_iUOLLcdu6Z4QpQAFPUY8u5uSjyP1tWC8Pq8zapK99D1sAw5ih1wY8LhrCk9neyHRQELwCt3mpaRHf7kOFxloADE-faPPTLiKvDV");'
-                ></div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Tomato</p>
-                  <p class="text-[#9abcb0] text-sm font-normal leading-normal">Planted on 05/15/2024 | Device: Online | Moisture: 65%</p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCNlum-YUQnve3WCgi5gq0qwz9rshHQNgkyKRQlIAw0kk6py-UifUbSKME8e-3xvaLfMyXrYXvL8WVY4x_mdx5RS7CwmnUOouyw_INIb0mAAEuQUSusr6k--KcVic0Pgxla4EAgugo_d6bSspKsCHJwybQUkY6q1auBqzttqNq3cDuU5YngD2stGsL4HWm27BsowTC-PYk48OuROpdx64PRlZ9aryn8q05NEpYnX3o6E7hsVJ1vNem6dVqgtuddoO047mkEbRLSy2Ur");'
-                ></div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Basil</p>
-                  <p class="text-[#9abcb0] text-sm font-normal leading-normal">Planted on 05/15/2024 | Device: Offline</p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCetBoDBIVw-47zAFlgwOyAUMUL62mCHLR0JJNU0J-l3Xc4y7JTfPPb6dntK0jwoHieRGg3me-Laj42Yju8pZXJoLo0d448x2Pxafc0GfhumpO-aS7kQ6UGeo1s3092pJ_ogGfIecXvqbVFQKsKRCa9CLDqR_rdegR0BaOVPdNMQir9vxYcxVxLWqV90bmLaMCqi3RTQJ2JeS8FME8L7nM51Prnl-ylN662HRNhD0RwMsKcU_rgzyVmLQ8okpOQOpUeZA9yZK7w9VuI");'
-                ></div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Rosemary</p>
-                  <p class="text-[#9abcb0] text-sm font-normal leading-normal">Planted on 05/15/2024 | Device: Online | Moisture: 72%</p>
-                </div>
-              </div>
-            </div>
-            <h3 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Indoor</h3>
-            <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAu1MfYKUl5AccIzzc4vXtQr6ncD4QJu75D3-reN1PZNbgzM-iTgrTxj962csS6jDYewDFZdRpEZ8cGFv4skUn72TQLgq-gUpvh2YGPs_Nw2JSkfseHXHRE1F4f254hUCx-vW-zgy4wfeWj445xzgq1VHqlm3qRTH2-Qj6CD_6461ZVc0ZE8dmAy3x-pPfsP4sHcW69W2q-cNVvFtJ9OD82Jw9b1Le3vrIFyG4tgWiznXm6caJPyoeQMFr5mHDdgsgu1qe2Ttk5rqT0");'
-                ></div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Fiddle Leaf Fig</p>
-                  <p class="text-[#9abcb0] text-sm font-normal leading-normal">Planted on 05/15/2024 | Device: Online | Moisture: 58%</p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPhkMAiXyvgDs5470U50s0jOlXAFB0x_zkvw-ICxg8O9t3w40uzGP3PifsSHPsS7UMGAX0ZwIrnRJXOx3Se0LnZECyHNviYDDp1oTocnyoZYsG23kY_CHxwuuTpCnNHf4IonWfM_9Pk-7mi-rsNykZOpZyz3AloIoFKeQYy7a6UCxtn5sIMYCosepGtOSQY3XLgJA73h2rq5SQXXyo_4uyK43sd9w1JPds9Wq8A9-JRIubRYQPGvx5UbIdRRLaL8TnZeTGJBF-eMbz");'
-                ></div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Snake Plant</p>
-                  <p class="text-[#9abcb0] text-sm font-normal leading-normal">Planted on 05/15/2024 | Device: Online | Moisture: 60%</p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCU_oLvRD8yD0SYZ7rFFcz_PnHDfbXPTcZUmAicpgM3LvM_xcEF3Td6EeXsxtJnEa1J4gm01zv4Gq-PohbyQ3UlinRd1O0_2Co8lYWTxNhnQWIrKs6gY_JIBmambeTbbLI796_Y0nBOpukiher6PTaCi1FtHmruUxdrQttR1KXiY9uG6nS9iRjJ28SxH_HUSBba9Ya9f1t8JWZ_VUyRReJwNI0ZMkZt20suXP7yxHn2Z2yATTufXCKC8oGC9jXn4yuT1IYBNV1uQ3wG");'
-                ></div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Peace Lily</p>
-                  <p class="text-[#9abcb0] text-sm font-normal leading-normal">Planted on 05/15/2024 | Device: Online | Moisture: 63%</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -141,4 +343,3 @@
     </div>
   </body>
 </html>
-
