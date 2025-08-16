@@ -26,6 +26,21 @@ def save_settings(new_data):
         json.dump(settings, f, indent=2)
 
 
+def save_to_env_file(env_vars: dict, env_file: str = ".env"):
+    lines = []
+    for key, value in env_vars.items():
+        lines.append(f'{key}="{value}"')
+    with open(env_file, "w") as f:
+        f.write("\n".join(lines))
+
+
+# config = {
+#     "LOGDASH_API_KEY": "abc123",
+#     "LOGDASH_HW_API_KEY": "def456"
+# save_to_env_file(config)
+# }
+
+
 def get_version():
     try:
         version_path = os.path.join(os.path.dirname(__file__), "..", "version.txt")
@@ -215,6 +230,11 @@ def reboot():
     except Exception as e:
         msg = f"❌ Błąd restartu Raspberry Pi:\n{e}"
     return render_with_status(msg)
+
+
+@app.route("/dashboard")
+def dashboard():
+    return render_template("device.html")
 
 
 @app.route("/config", methods=["GET", "POST"])
